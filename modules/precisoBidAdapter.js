@@ -7,7 +7,7 @@ import { buildRequests, interpretResponse, onBidWon } from '../libraries/bidUtil
 import { buildUserSyncs } from '../libraries/bidUtils/bidUtilsCommon.js';
 
 const BIDDER__CODE = 'preciso';
-export const storage = getStorageManager({ moduleType: MODULE_TYPE_UID, moduleName: 'sharedId' });
+// export const storage = getStorageManager({ moduleType: MODULE_TYPE_UID, moduleName: 'sharedId' });
 export const storage2 = getStorageManager({ moduleType: MODULE_TYPE_UID, moduleName: BIDDER__CODE });
 const SUPPORTED_MEDIA_TYPES = [BANNER];
 const GVLID = 874;
@@ -23,7 +23,8 @@ export const spec = {
   gvlid: GVLID,
 
   isBidRequestValid: (bid) => {
-    sharedId = storage.getDataFromLocalStorage('_sharedid') || storage.getCookie('_sharedid');
+    sharedId = storage2.getDataFromLocalStorage('_sharedid') || storage2.getCookie('_sharedid');
+    logInfo('Test Test sharedId:::' + sharedId)
     let precisoBid = true;
     const preCall = 'https://ssp-usersync.mndtrk.com/getUUID?sharedId=' + sharedId;
     precisoId = storage2.getDataFromLocalStorage('_pre|id');
